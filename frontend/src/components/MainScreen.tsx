@@ -25,6 +25,7 @@ export function MainScreen() {
   const [showTermsDialog, setShowTermsDialog] = useState(false)
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear())
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth() + 1)
+  const [calendarRefreshKey, setCalendarRefreshKey] = useState(0)
 
   useEffect(() => {
     if (selectedDate) {
@@ -65,6 +66,7 @@ export function MainScreen() {
     setShowSaveDialog(false)
     setIsEditing(false)
     setOriginalMemoContent(memoContent)
+    setCalendarRefreshKey(prev => prev + 1)
     if (selectedDate) {
       fetchPaymentsForDate(selectedDate)
     }
@@ -129,6 +131,7 @@ export function MainScreen() {
                 setCurrentYear(year)
                 setCurrentMonth(month)
               }}
+              refreshKey={calendarRefreshKey}
             />
           </CardContent>
         </Card>

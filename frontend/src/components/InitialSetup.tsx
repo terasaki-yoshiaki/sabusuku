@@ -56,8 +56,9 @@ export function InitialSetup({ onComplete }: InitialSetupProps) {
         newServices[currentIndex] = currentService
         setServices(newServices)
         
-        setCurrentIndex(currentIndex + 1)
-        setCurrentService({
+        const nextIndex = currentIndex + 1
+        setCurrentIndex(nextIndex)
+        setCurrentService(services[nextIndex] || {
           service_name: '',
           withdrawal_date: 1,
           amount: 0

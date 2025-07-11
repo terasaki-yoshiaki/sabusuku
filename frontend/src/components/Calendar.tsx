@@ -8,14 +8,15 @@ interface CalendarProps {
   currentYear: number
   currentMonth: number
   onMonthChange: (year: number, month: number) => void
+  refreshKey?: number
 }
 
-export function Calendar({ selectedDate, onDateSelect, currentYear, currentMonth, onMonthChange }: CalendarProps) {
+export function Calendar({ selectedDate, onDateSelect, currentYear, currentMonth, onMonthChange, refreshKey }: CalendarProps) {
   const [paymentDates, setPaymentDates] = useState<number[]>([])
 
   useEffect(() => {
     fetchCalendarData()
-  }, [currentYear, currentMonth])
+  }, [currentYear, currentMonth, refreshKey])
 
   const fetchCalendarData = async () => {
     try {
